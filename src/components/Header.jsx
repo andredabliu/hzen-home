@@ -72,7 +72,6 @@ export default function Header() {
       <div className="wrap hdr-bar">
         <a className="hdr-brand" href="#topo" onClick={go('#topo')} aria-label="H-Zen, voltar ao início">
           <img src="./img/marca/hzen-logo.svg" alt="" width="110" height="35" />
-          <span className="hdr-place">Brusque, SC</span>
         </a>
 
         <nav className="hdr-nav" aria-label="Principal">
@@ -97,13 +96,13 @@ export default function Header() {
         </nav>
 
         <div className="hdr-actions">
-          <a className="chip hdr-wa" href={`https://wa.me/${contato.whatsapp}?text=${encodeURIComponent('Olá, H-Zen. Vim pelo site e quero falar com a engenharia comercial.')}`} target="_blank" rel="noopener">
-            <Icon name="whatsapp" /> WhatsApp
+          <a className="chip hdr-wa" href={`https://wa.me/${contato.whatsapp}?text=${encodeURIComponent('Olá, H-Zen. Vim pelo site e quero falar com a engenharia comercial.')}`} target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp">
+            <Icon name="whatsapp" /> <span className="hdr-wa-t">WhatsApp</span>
           </a>
           <Split href="#orcamento" small onClick={go('#orcamento')}>Orçamento</Split>
           <a className="chip is-on hdr-orc-m" href="#orcamento" onClick={go('#orcamento')}>Orçamento</a>
-          <button className="chip hdr-menu" aria-expanded={mobile} aria-controls="menu-mobile" onClick={() => setMobile((v) => !v)}>
-            {mobile ? 'Fechar' : 'Menu'} <Icon name={mobile ? 'fechar' : 'menu'} />
+          <button className="chip hdr-menu" aria-label={mobile ? 'Fechar menu' : 'Abrir menu'} aria-expanded={mobile} aria-controls="menu-mobile" onClick={() => setMobile((v) => !v)}>
+            <span className="hdr-menu-t">{mobile ? 'Fechar' : 'Menu'}</span> <Icon name={mobile ? 'fechar' : 'menu'} />
           </button>
         </div>
       </div>
@@ -121,7 +120,7 @@ export default function Header() {
             {familias.slice(0, 5).map((f) => (
               <li key={f.id}>
                 <a href="#linha" onClick={go('#linha')} className="mega-item">
-                  <span className="mega-img"><img src={f.img} alt="" loading="lazy" /></span>
+                  <span className={`mega-img${f.fotoPagina ? ' has-foto' : ''}`}><img src={f.fotoPagina || f.img} alt="" loading="lazy" /></span>
                   <span className="mega-name">{f.nome}</span>
                   <span className="mega-fact">{f.curto}</span>
                 </a>
@@ -132,7 +131,7 @@ export default function Header() {
             <span className="mega-feature-tag">Lançamento</span>
             <span className="mega-feature-name">HZ-1300Ss</span>
             <span className="mega-feature-fact">6,8 t de força vibratória, 19.200 blocos por dia</span>
-            <img src="./img/produtos/hz-1300ss.webp" alt="" loading="lazy" />
+            <img src="./img/fotos/hz-1300ss-recorte.webp" alt="" loading="lazy" />
           </a>
         </div>
       </div>

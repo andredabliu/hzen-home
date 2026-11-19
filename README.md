@@ -27,7 +27,7 @@ src/
     Hero.jsx            palavras "Blocos · pavers", giro 360° da HZ-1000 em canvas ligado ao scroll, contador ao vivo
     Sections.jsx        Quem somos, Lançamento HZ-1300Ss, Linha, Planta, Projetos, Por que, Perguntas
     Calculadora.jsx     produção por mês de cada vibroprensa para a meta escolhida; envia a configuração ao formulário
-    Orcamento.jsx       formulário de orçamento (abre o WhatsApp com a mensagem), rodapé, WhatsApp flutuante (celular)
+    Orcamento.jsx       formulário de orçamento (abre o WhatsApp com a mensagem), rodapé (WhatsApp fica no cabeçalho)
     Icon.jsx            ícones de traço e o componente <Split> (botão duplo)
 public/img/             renders recortados (WebP), quadros do giro (120), projetos, marca
 ```

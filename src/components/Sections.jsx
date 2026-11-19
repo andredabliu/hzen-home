@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import Icon, { Split } from './Icon.jsx'
+
+/** Foto padronizada (Magnific) quando existe; senão o recorte do catálogo. */
+function Shot({ item, className = '', alt = '' }) {
+  if (item.foto) return <img src={item.foto} alt={alt} className={`${className} is-foto`} style={{ objectFit: item.fit || 'cover' }} loading="lazy" />
+  return <img src={item.img} alt={alt} className={className} loading="lazy" />
+}
 import { familias, etapas, vibroprensas } from '../data/maquinas.js'
-import { scrollToTarget } from '../lib/motion.js'
+import { scrollToTarget, gsap, reduceMotion } from '../lib/motion.js'
 
 const goTo = (href) => (e) => { e.preventDefault(); scrollToTarget(href) }
 
@@ -40,35 +46,64 @@ export function QuemSomos() {
   )
 }
 
-/* ---------- Lançamento HZ-1300Ss ---------- */
+/* ---------- Lançamento HZ-1300Ss: máquina no centro, ambientada, palavras nas laterais ---------- */
+function useLancMotion(ref) {
+  useEffect(() => {
+    if (reduceMotion()) return
+    const root = ref.current
+    const ctx = gsap.context(() => {
+      const st = { trigger: root.querySelector('.lanc-stage'), start: 'top 85%', end: 'top 25%', scrub: 0.6 }
+      gsap.from(root.querySelector('.lanc-w.is-l'), { xPercent: -40, opacity: 0, ease: 'none', scrollTrigger: st })
+      gsap.from(root.querySelector('.lanc-w.is-r'), { xPercent: 40, opacity: 0, ease: 'none', scrollTrigger: st })
+      gsap.from(root.querySelector('.lanc-photo'), { scale: 1.12, ease: 'none', scrollTrigger: st })
+      // números da ficha contam até o valor quando a ficha entra na tela
+      root.querySelectorAll('[data-count]').forEach((el) => {
+        const alvo = Number(el.dataset.count)
+        const dec = Number(el.dataset.dec || 0)
+        const obj = { v: 0 }
+        gsap.to(obj, {
+          v: alvo, duration: 1.4, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+          onUpdate: () => { el.textContent = obj.v.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec }) },
+        })
+      })
+    }, root)
+    return () => ctx.revert()
+  }, [ref])
+}
+
 export function Lancamento() {
+  const ref = useRef(null)
+  useLancMotion(ref)
   const m = vibroprensas.find((v) => v.id === 'hz-1300ss')
+  const N = ({ v, dec = 0 }) => (
+    <span data-count={v} data-dec={dec}>{v.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec })}</span>
+  )
   const ficha = [
-    ['Força vibratória', m.forca],
-    ['Vibração da mesa', '4 servomotores independentes'],
+    ['Força vibratória', <><N v={6.8} dec={1} /> t</>],
+    ['Vibração da mesa', <><N v={4} /> servomotores</>],
     ['Bandeja', m.bandeja],
     ['Tempo de ciclo', m.ciclo],
-    ['Potência', m.potencia],
-    ['Bloco 9 × 19 × 39', '19.200 por dia*'],
-    ['Paver 10 × 20', '1.200 m² por dia*'],
+    ['Potência', <><N v={40} /> kW</>],
+    ['Bloco 9 × 19 × 39', <><N v={19200} /> por dia*</>],
+    ['Paver 10 × 20', <><N v={1200} /> m² por dia*</>],
     ['Painel', 'CLP e IHM touch, NR-10'],
   ]
   const detalhes = [
-    { img: './img/produtos/detalhe-gaveta.webp', t: 'Gaveta alimentadora', c: 'is-a' },
-    { img: './img/produtos/detalhe-ihm.webp', t: 'IHM touch com receitas', c: 'is-b' },
-    { img: './img/produtos/detalhe-molde.webp', t: 'Molde e contramolde', c: 'is-c' },
+    { img: './img/produtos/detalhe-gaveta.webp', t: 'Gaveta alimentadora' },
+    { img: './img/produtos/detalhe-ihm.webp', t: 'IHM touch com receitas' },
+    { img: './img/produtos/detalhe-molde.webp', t: 'Molde e contramolde' },
   ]
   return (
-    <section id="lancamento" className="section lanc" aria-labelledby="lanc-title">
+    <section id="lancamento" className="section lanc" aria-labelledby="lanc-title" ref={ref}>
       <div className="wrap">
-        <div className="lanc-top">
-          <h2 id="lanc-title" className="t-display two-tone lanc-title" data-reveal>
-            <span className="tt-a">Lançamento</span>
-            <span className="tt-b">HZ-1300Ss</span>
+        <div className="lanc-stage has-photo">
+          <h2 id="lanc-title" className="lanc-title">
+            <span className="lanc-w is-l">Lançamento</span>
+            <span className="sr-only">: </span>
+            <span className="lanc-w is-r">HZ-1300Ss</span>
           </h2>
-          <figure className="lanc-machine">
-            <img src={m.img} alt="Vibroprensa HZ-1300Ss" loading="lazy" width="1094" height="1400" />
-          </figure>
+          <img className="lanc-photo" src="./img/fotos/hz-1300ss-palco.webp" alt="Vibroprensa HZ-1300Ss em estúdio" loading="lazy" width="2400" height="1340" />
         </div>
         <div className="lanc-body">
           <div className="lanc-copy" data-reveal>
@@ -88,7 +123,7 @@ export function Lancamento() {
         <p className="t-small muted lanc-nota">*Produção diária em 8 horas, sem paradas para limpeza ou manutenção.</p>
         <div className="lanc-det" data-reveal>
           {detalhes.map((d) => (
-            <figure key={d.t} className={d.c}>
+            <figure key={d.t}>
               <div><img src={d.img} alt={d.t} loading="lazy" /></div>
               <figcaption className="t-small">{d.t}</figcaption>
             </figure>
@@ -111,7 +146,7 @@ function LinhaItem({ f, i, ativo, setAtivo }) {
           <span className="t-small muted">Família</span>
           <span>{f.texto}</span>
         </span>
-        <span className="linha-img-m"><img src={f.img} alt="" loading="lazy" /></span>
+        <span className={`linha-img-m${f.foto ? ' has-foto' : ''}`}><Shot item={f} /></span>
       </a>
     </li>
   )
@@ -136,7 +171,7 @@ export function Linha() {
           <ul className="linha-col" data-reveal>{esquerda.map((f, i) => <LinhaItem key={f.id} f={f} i={i} ativo={ativo} setAtivo={setAtivo} />)}</ul>
           <div className="linha-stage" aria-hidden="true">
             {familias.map((f, i) => (
-              <img key={f.id} src={f.img} alt="" className={ativo === i ? 'is-on' : ''} loading="lazy" />
+              <Shot key={f.id} item={f} className={ativo === i ? 'is-on' : ''} />
             ))}
             <span className="linha-stage-name t-small">{familias[ativo].nome}</span>
           </div>
@@ -170,7 +205,7 @@ export function Planta() {
             <p className="muted planta-intro">Uma fábrica de artefatos é uma sequência. A H-Zen fabrica a máquina de cada etapa e faz elas conversarem.</p>
             <div className="planta-stage" aria-hidden="true">
               {etapas.map((e, i) => (
-                <img key={e.id} src={e.img} alt="" className={ativo === i ? 'is-on' : ''} loading="lazy" />
+                <Shot key={e.id} item={e} className={ativo === i ? 'is-on' : ''} />
               ))}
               <span className="t-small planta-stage-name">{etapas[ativo].maquina}</span>
             </div>
@@ -184,7 +219,7 @@ export function Planta() {
                 <h3 className="t-head planta-verb">{e.verbo}</h3>
                 <p className="t-lead">{e.texto}</p>
                 <p className="t-small muted">{e.maquina}</p>
-                <img className="planta-img-m" src={e.img} alt={e.maquina} loading="lazy" />
+                <Shot item={e} className="planta-img-m" alt={e.maquina} />
               </div>
             </li>
           ))}
@@ -253,7 +288,7 @@ export function PorQue() {
               </li>
             ))}
           </ul>
-          <img className="porque-machine" src="./img/produtos/hz-700-sincro.webp" alt="" loading="lazy" />
+          <img className="porque-machine" src="./img/fotos/hz-1000-sincro-recorte.webp" alt="" loading="lazy" />
         </div>
       </div>
     </section>

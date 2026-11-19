@@ -76,7 +76,7 @@
   /* ---------- Forma ---------- */
   --radius: 4px;         /* chips, botões, campos: lê como reto */
   --radius-panel: 8px;   /* painéis inseridos, cards de imagem */
-  --radius-frame: clamp(40px, 7vw, 100px); /* moldura das palavras da abertura */
+  --radius-frame: clamp(12px, 1.6vw, 24px); /* moldura das palavras da abertura (menos arredondada) */
   --radius-round: 999px; /* botão circular (voltar ao topo, play), ícone em círculo */
   --border: 1px;
   --control-h: 48px;     /* altura mínima de toque */

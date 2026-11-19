@@ -3,7 +3,7 @@ import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import Calculadora from './components/Calculadora.jsx'
 import { QuemSomos, Lancamento, Linha, Planta, Projetos, PorQue, Faq } from './components/Sections.jsx'
-import { Orcamento, Footer, WhatsAppFloat } from './components/Orcamento.jsx'
+import { Orcamento, Footer } from './components/Orcamento.jsx'
 import { startReveals, ScrollTrigger } from './lib/motion.js'
 
 export default function App() {
@@ -34,7 +34,6 @@ export default function App() {
         <Orcamento preset={preset} />
       </main>
       <Footer />
-      <WhatsAppFloat />
     </>
   )
 }

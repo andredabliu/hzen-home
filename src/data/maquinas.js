@@ -3,6 +3,9 @@
 // a calculadora e as futuras páginas de produto. Altere aqui, não nos componentes.
 
 const IMG = './img/produtos/'
+// Fotos padronizadas no Magnific (Nano Banana 2.1) a partir dos renders do catálogo.
+// -tela: fundo ajustado a #D9D6D1 (telas da linha e da planta) · -pagina: fundo #E6E4E0 (sobre a página)
+const FOTO = './img/fotos/'
 
 /** Artefatos que entram na calculadora (meio-fio fora até o cliente confirmar as medidas). */
 export const artefatos = [
@@ -17,32 +20,32 @@ export const artefatos = [
 /** Vibroprensas, da menor para a maior. Produção por dia em 8 h, sem paradas. */
 export const vibroprensas = [
   {
-    id: 'hz-3-2', nome: 'HZ-3.2', img: IMG + 'hz-3-2-linha.webp',
+    id: 'hz-3-2', nome: 'HZ-3.2', img: IMG + 'hz-3-2-linha.webp', foto: FOTO + 'hz-3-2-linha-pagina.webp',
     bandeja: '480 × 540 × 20 mm', potencia: '20 kW', ciclo: '14 a 20 s', forca: '1,5 t',
     producao: { 'paver-10x20': 240, 'paver-16-faces': 180, 'lajota-sextavada': 188, 'bloco-9': 7000, 'bloco-14': 4200, 'bloco-19': 2800 },
   },
   {
-    id: 'hz-04', nome: 'HZ-04', img: IMG + 'site-VibroHZ04.webp',
+    id: 'hz-04', nome: 'HZ-04', img: IMG + 'site-VibroHZ04.webp', foto: FOTO + 'hz-04-pagina.webp',
     bandeja: '540 × 620 × 25 mm', potencia: '28 kW', ciclo: '12 a 18 s', forca: '3 t',
     producao: { 'paver-10x20': 360, 'paver-16-faces': 270, 'lajota-sextavada': 450, 'bloco-9': 7500, 'bloco-14': 6000, 'bloco-19': 4500 },
   },
   {
-    id: 'hz-06', nome: 'HZ-06', img: IMG + 'hz-06.webp',
+    id: 'hz-06', nome: 'HZ-06', img: IMG + 'hz-06.webp', foto: FOTO + 'hz-06-pagina.webp',
     bandeja: '620 × 920 × 25 mm', potencia: '37 kW', ciclo: '12 a 18 s', forca: '3 t',
     producao: { 'paver-10x20': 680, 'paver-16-faces': 540, 'lajota-sextavada': 525, 'bloco-9': 12000, 'bloco-14': 7500, 'bloco-19': 6000 },
   },
   {
-    id: 'hz-700-sincro', nome: 'HZ-700 Sincro', img: IMG + 'hz-700-sincro.webp',
+    id: 'hz-700-sincro', nome: 'HZ-700 Sincro', img: IMG + 'hz-700-sincro.webp', foto: FOTO + 'hz-1000-sincro-pagina.webp',
     bandeja: '620 × 920 × 25 mm', potencia: '37 kW', ciclo: '12 a 18 s', forca: '4,5 t',
     producao: { 'paver-10x20': 720, 'paver-16-faces': 540, 'lajota-sextavada': 563, 'bloco-9': 12800, 'bloco-14': 8000, 'bloco-19': 6400 },
   },
   {
-    id: 'hz-1000-sincro', nome: 'HZ-1000 Sincro', img: IMG + 'hz-1000-sincro.webp',
+    id: 'hz-1000-sincro', nome: 'HZ-1000 Sincro', img: IMG + 'hz-1000-sincro.webp', foto: FOTO + 'hz-1000-sincro-pagina.webp',
     bandeja: '1200 × 675 × 40 mm', potencia: '40 kW', ciclo: '11 a 18 s', forca: '6 t',
     producao: { 'paver-10x20': 1000, 'paver-16-faces': 680, 'lajota-sextavada': 744, 'bloco-9': 17600, 'bloco-14': 11200, 'bloco-19': 8000 },
   },
   {
-    id: 'hz-1300ss', nome: 'HZ-1300Ss', img: IMG + 'hz-1300ss.webp', lancamento: true,
+    id: 'hz-1300ss', nome: 'HZ-1300Ss', img: IMG + 'hz-1300ss.webp', foto: FOTO + 'hz-1300ss-pagina.webp', lancamento: true,
     bandeja: '1300 × 700 × 40 mm', potencia: '40 kW', ciclo: '11 a 18 s', forca: '6,8 t',
     producao: { 'paver-10x20': 1200, 'paver-16-faces': 850, 'lajota-sextavada': 850, 'bloco-9': 19200, 'bloco-14': 12800, 'bloco-19': 9600 },
   },
@@ -50,31 +53,31 @@ export const vibroprensas = [
 
 /** Famílias da linha de produtos (lista da Home e mega menu). */
 export const familias = [
-  { id: 'vibroprensas', nome: 'Vibroprensas', icone: 'prensa', img: IMG + 'hz-1000-sincro.webp',
+  { id: 'vibroprensas', nome: 'Vibroprensas', icone: 'prensa', img: IMG + 'hz-1000-sincro.webp', foto: FOTO + 'hz-1300ss-tela.webp', fotoPagina: FOTO + 'hz-1300ss-pagina.webp', fit: 'cover',
     texto: 'Da HZ-3.2 à HZ-1300Ss, de 7.000 a 19.200 blocos por dia.', curto: '6 modelos, até 19.200 blocos/dia' },
-  { id: 'misturadores', nome: 'Misturadores', icone: 'misturador', img: IMG + 'misturador-planetario.webp',
+  { id: 'misturadores', nome: 'Misturadores', icone: 'misturador', img: IMG + 'misturador-planetario.webp', foto: FOTO + 'misturador-planetario-tela.webp', fotoPagina: FOTO + 'misturador-planetario-pagina.webp', fit: 'cover',
     texto: 'Planetário, eixo simples e duplo eixo, de 400 a 2.400 kg por ciclo.', curto: 'Planetário, eixo simples e duplo' },
-  { id: 'centrais', nome: 'Centrais dosadoras', icone: 'central', img: IMG + 'central-balanca.webp',
+  { id: 'centrais', nome: 'Centrais dosadoras', icone: 'central', img: IMG + 'central-balanca.webp', foto: FOTO + 'central-dosadora-tela.webp', fotoPagina: FOTO + 'central-dosadora-pagina.webp', fit: 'contain',
     texto: 'Pesagem na esteira, temporizada, por desconto ou individual, com receitas na IHM.', curto: 'Quatro sistemas de pesagem' },
-  { id: 'elevadores', nome: 'Elevadores', icone: 'elevador', img: IMG + 'elevador-gaiolas.webp',
+  { id: 'elevadores', nome: 'Elevadores', icone: 'elevador', img: IMG + 'elevador-gaiolas.webp', foto: FOTO + 'elevador-gaiolas-tela.webp', fotoPagina: FOTO + 'elevador-gaiolas-pagina.webp', fit: 'cover',
     texto: 'Empilhador, para gaiolas e acumulador para Finger Car.', curto: 'Carga e descarga de bandejas' },
-  { id: 'automacoes', nome: 'Automações', icone: 'automacao', img: IMG + 'garra.webp',
+  { id: 'automacoes', nome: 'Automações', icone: 'automacao', img: IMG + 'garra.webp', foto: FOTO + 'garra-tela.webp', fotoPagina: FOTO + 'garra-pagina.webp', fit: 'cover',
     texto: 'Finger Car, Cubber e Garra para transporte, cura e paletização.', curto: 'Finger Car, Cubber e Garra' },
-  { id: 'plantas', nome: 'Plantas completas', icone: 'planta', img: IMG + 'cubber.webp',
+  { id: 'plantas', nome: 'Plantas completas', icone: 'planta', img: IMG + 'cubber.webp', foto: FOTO + 'cubber-tela.webp', fotoPagina: FOTO + 'cubber-pagina.webp', fit: 'cover',
     texto: 'Layout, máquinas e automação projetados juntos, do silo ao palete.', curto: 'Do layout à partida' },
 ]
 
 /** Etapas de uma planta de artefatos. A ordem é real. */
 export const etapas = [
-  { id: 'dosar', verbo: 'Dosar', maquina: 'Central dosadora', img: IMG + 'central-balanca.webp',
+  { id: 'dosar', verbo: 'Dosar', maquina: 'Central dosadora', img: IMG + 'central-balanca.webp', foto: FOTO + 'central-dosadora-tela.webp', fit: 'contain',
     texto: 'A central pesa areia, pó de pedra e cimento por receita, com células de carga e CLP.' },
-  { id: 'misturar', verbo: 'Misturar', maquina: 'Misturador planetário', img: IMG + 'misturador-planetario.webp',
+  { id: 'misturar', verbo: 'Misturar', maquina: 'Misturador planetário', img: IMG + 'misturador-planetario.webp', foto: FOTO + 'misturador-planetario-tela.webp', fit: 'contain',
     texto: 'O misturador deixa o traço homogêneo, com chapas de desgaste em aço extra duro.' },
-  { id: 'prensar', verbo: 'Prensar', maquina: 'Vibroprensa HZ-1000 Sincro', img: IMG + 'hz-1000-sincro.webp',
+  { id: 'prensar', verbo: 'Prensar', maquina: 'Vibroprensa HZ-1000 Sincro', img: IMG + 'hz-1000-sincro.webp', foto: FOTO + 'hz-1000-sincro-tela.webp', fit: 'cover',
     texto: 'A vibroprensa molda blocos, pavers e lajotas em ciclos de 11 a 20 segundos.' },
-  { id: 'curar', verbo: 'Transportar e curar', maquina: 'Elevador para Finger Car', img: IMG + 'elevador-finger-car.webp',
+  { id: 'curar', verbo: 'Transportar e curar', maquina: 'Elevador para Finger Car', img: IMG + 'elevador-finger-car.webp', foto: FOTO + 'elevador-finger-car-tela.webp', fit: 'cover',
     texto: 'Elevadores e Finger Car levam as bandejas às câmaras de cura sem trincar o artefato fresco.' },
-  { id: 'paletizar', verbo: 'Paletizar', maquina: 'Garra', img: IMG + 'garra.webp',
+  { id: 'paletizar', verbo: 'Paletizar', maquina: 'Garra', img: IMG + 'garra.webp', foto: FOTO + 'garra-tela.webp', fit: 'cover',
     texto: 'Cubber e Garra montam o palete e devolvem as bandejas vazias à máquina.' },
 ]
 

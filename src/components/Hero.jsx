@@ -115,8 +115,9 @@ export default function Hero() {
             <p className="muted hero-p">Fabricação própria em Brusque (SC), do projeto da planta à assistência técnica.</p>
             <div className="btn-row">
               <Split href="#orcamento" onClick={(e) => { e.preventDefault(); scrollToTarget('#orcamento') }}>Solicitar orçamento</Split>
-              <Split href="#linha" variant="line" onClick={(e) => { e.preventDefault(); scrollToTarget('#linha') }}>Ver as máquinas</Split>
+              <Split href="./catalogo/catalogo-h-zen-2026.pdf" variant="line" icon="baixar" download="Catalogo-H-Zen-2026.pdf" target="_blank" rel="noopener">Baixar catálogo</Split>
             </div>
+            <p className="t-small muted hero-cat">Catálogo 2026 em PDF, 24 páginas, 5 MB · <a href="#linha" onClick={(e) => { e.preventDefault(); scrollToTarget('#linha') }}>ou veja as máquinas aqui</a></p>
           </div>
           <p className="hero-counter" aria-live="off">
             <span className="hero-counter-n num">{formatar(blocos)}</span>

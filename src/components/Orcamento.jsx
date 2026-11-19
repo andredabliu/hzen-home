@@ -178,6 +178,7 @@ export function Footer() {
 
         <div className="ftr-info">
           <address>
+            <img className="ftr-logo" src="./img/marca/hzen-logo.svg" alt="H-Zen" width="104" height="33" loading="lazy" />
             <strong>H-Zen Máquinas e Equipamentos</strong>
             {contato.endereco.map((l) => <span key={l}>{l}</span>)}
             <a href={contato.mapa} target="_blank" rel="noopener">Ver no mapa</a>
@@ -194,7 +195,6 @@ export function Footer() {
           </div>
         </div>
 
-        <img className="ftr-logo" src="./img/marca/hzen-logo.svg" alt="H-Zen" width="1600" height="506" loading="lazy" />
         <p className="ftr-legal t-small muted">© 2026 H-Zen Automação Industrial Ltda. · Equipamentos desenvolvidos e fabricados no Brasil.</p>
       </div>
     </footer>
@@ -203,11 +203,22 @@ export function Footer() {
 
 export function WhatsAppFloat() {
   const [show, setShow] = useState(false)
+  // aparece depois da abertura; some enquanto a pessoa rola para baixo (não cobre títulos) e volta quando ela para ou sobe
   useEffect(() => {
-    const on = () => setShow(window.scrollY > window.innerHeight * 0.8)
+    let last = window.scrollY
+    let t = 0
+    const on = () => {
+      const y = window.scrollY
+      const passou = y > window.innerHeight * 0.8
+      clearTimeout(t)
+      if (!passou) setShow(false)
+      else if (y > last) { setShow(false); t = setTimeout(() => setShow(true), 900) }
+      else setShow(true)
+      last = y
+    }
     on()
     window.addEventListener('scroll', on, { passive: true })
-    return () => window.removeEventListener('scroll', on)
+    return () => { clearTimeout(t); window.removeEventListener('scroll', on) }
   }, [])
   const msg = encodeURIComponent('Olá, H-Zen. Vim pelo site e quero falar com a engenharia comercial.')
   return (

@@ -102,7 +102,7 @@ export default function Calculadora({ onEscolha }) {
               })}
             </ul>
             <div className="calc-cta">
-              {indicada && <img src={indicada.m.img} alt={indicada.m.nome} className="calc-img" loading="lazy" />}
+              {indicada && <img src={indicada.m.foto || indicada.m.img} alt={indicada.m.nome} className="calc-img" loading="lazy" />}
               <Split href="#orcamento" onClick={pedir}>Pedir orçamento desta configuração</Split>
             </div>
             <p className="t-small muted">Estimativa com turnos de 8 horas, sem paradas para limpeza ou manutenção. A produção real depende do traço, dos moldes e da operação.</p>
