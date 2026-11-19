@@ -17,6 +17,7 @@ body {
   text-rendering: optimizeLegibility;
   overflow-x: clip;
 }
+html { overflow-x: clip; } /* nada pode alargar a página no celular */
 img, svg, canvas, video { display: block; max-width: 100%; }
 img { height: auto; }
 h1, h2, h3, h4, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }

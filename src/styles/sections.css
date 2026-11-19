@@ -451,3 +451,30 @@
   .calc-foto-cap { padding-top: 8px; }
   .calc-out { order: 3; grid-column: 1 / -1; }
 }
+
+/* ---------- Revisão do celular ---------- */
+.hero, .lanc, #lancamento { overflow-x: clip; }
+@media (hover: none) { .so-hover { display: none; } }
+@media (max-width: 899px) {
+  /* detalhes da HZ-1300Ss: carrossel com rolagem lateral em vez de três fotos empilhadas */
+  .lanc-det { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(-1 * var(--margin)); padding-inline: var(--margin); scroll-padding-inline: var(--margin); }
+  .lanc-det::-webkit-scrollbar { display: none; }
+  .lanc-det figure { scroll-snap-align: start; }
+  /* alvos de toque com 44 px */
+  .calc .chip { min-height: 44px; min-width: 44px; justify-content: center; }
+  .orc-canais a { display: block; padding-block: 9px; margin-block: -9px; }
+  .ftr-links ul { gap: 0; }
+  .ftr-links a { display: block; padding-block: 11px; }
+  .ftr-info a { display: inline-block; padding-block: 9px; }
+  .ftr-info address, .ftr-info div { gap: 0; }
+}
+@media (max-width: 899px) {
+  /* Lançamento no celular: palavras em cima, foto embaixo (sem texto sobre a máquina) */
+  .lanc-stage.has-photo { display: block; min-height: 0; aspect-ratio: auto; height: clamp(520px, 150vw, 640px); padding: 0; }
+  .lanc-stage.has-photo .lanc-title { position: relative; inset: auto; height: auto; flex-direction: column; align-items: flex-start; gap: 2px; padding: 20px 20px 0; font-size: clamp(2.25rem, 11vw, 3.5rem); }
+  .lanc-stage.has-photo .lanc-w.is-r { align-self: flex-start; }
+  .lanc-stage.has-photo .lanc-photo { top: auto; bottom: 0; height: 76%; object-position: 50% 50%; }
+}
+@media (max-width: 600px) {
+  .calc-row { grid-template-columns: minmax(0, 1fr) 104px; }
+}

@@ -61,8 +61,10 @@ function useLancMotion(ref) {
     const root = ref.current
     const ctx = gsap.context(() => {
       const st = { trigger: root.querySelector('.lanc-stage'), start: 'top 85%', end: 'top 25%', scrub: 0.6 }
-      gsap.from(root.querySelector('.lanc-w.is-l'), { xPercent: -40, opacity: 0, ease: 'none', scrollTrigger: st })
-      gsap.from(root.querySelector('.lanc-w.is-r'), { xPercent: 40, opacity: 0, ease: 'none', scrollTrigger: st })
+      // no celular as palavras ficam empilhadas: deslocamento menor para não sair do palco
+      const d = window.matchMedia('(max-width: 899px)').matches ? 12 : 40
+      gsap.from(root.querySelector('.lanc-w.is-l'), { xPercent: -d, opacity: 0, ease: 'none', scrollTrigger: st })
+      gsap.from(root.querySelector('.lanc-w.is-r'), { xPercent: d, opacity: 0, ease: 'none', scrollTrigger: st })
       gsap.from(root.querySelector('.lanc-photo'), { scale: 1.12, ease: 'none', scrollTrigger: st })
       // números da ficha contam até o valor quando a ficha entra na tela
       root.querySelectorAll('[data-count]').forEach((el) => {
@@ -173,7 +175,7 @@ export function Linha() {
             <span className="tt-a">Uma linha para</span>
             <span className="tt-b">a fábrica inteira</span>
           </h2>
-          <p className="muted measure">Cada família resolve uma etapa da produção. Passe o mouse para ver a máquina.</p>
+          <p className="muted measure">Cada família resolve uma etapa da produção.<span className="so-hover"> Passe o mouse para ver a máquina.</span></p>
         </div>
         <div className="linha-grid">
           <ul className="linha-col" data-reveal>{esquerda.map((f, i) => <LinhaItem key={f.id} f={f} i={i} ativo={ativo} setAtivo={setAtivo} />)}</ul>
