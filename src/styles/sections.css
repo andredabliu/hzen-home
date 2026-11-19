@@ -197,6 +197,7 @@
 .calc-ctrl .chip { background: var(--paper); }
 .calc-ctrl .chip[aria-pressed="true"] { background: var(--ink); }
 .calc-range { width: 100%; accent-color: var(--accent); height: 28px; margin-top: 4px; }
+.calc-max { margin-top: var(--s-1); }
 .calc-row { display: grid; grid-template-columns: minmax(0, 1fr) 140px; gap: 16px; align-items: end; }
 .calc-out { display: grid; gap: 24px; align-content: start; }
 .calc-result strong { font-weight: var(--w-medium); }
@@ -409,3 +410,21 @@
 
 .mega-img.has-foto img { width: 100%; height: 100%; object-fit: cover; }
 .calc-img { width: 120px; height: 96px; padding: 0; object-fit: contain; }
+
+/* Fotos -v (4:5): preenchem o quadro sem cortar a máquina. No celular entra a foto larga, inteira. */
+.shot { display: contents; }
+.linha-stage img.is-foto, .planta-stage img.is-foto { object-fit: cover; object-position: 50% 50%; }
+.linha-img-m.has-foto img, .planta-img-m.is-foto { object-fit: contain; }
+
+/* Por que: sem imagem, a lista ocupa o painel inteiro */
+.porque-list { max-width: none; }
+@media (min-width: 1200px) {
+  .porque-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .porque-bd { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+}
+
+/* Orçamento: canais diretos no lugar da imagem */
+.orc-canais { margin-top: clamp(8px, 2vw, 32px); border-bottom: var(--border) solid var(--line); max-width: 460px; }
+.orc-canais li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; align-items: baseline; padding-block: 16px; border-top: var(--border) solid var(--line); }
+.orc-canais a { color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+.orc-canais a:hover { color: var(--accent-text); }

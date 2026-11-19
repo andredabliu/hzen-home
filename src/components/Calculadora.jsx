@@ -7,7 +7,7 @@ const metaInicial = { 'paver-10x20': 15000, 'paver-16-faces': 10000, 'lajota-sex
 
 export default function Calculadora({ onEscolha }) {
   const [art, setArt] = useState('bloco-14')
-  const [meta, setMeta] = useState(metaInicial['bloco-14'])
+  const [metaPedida, setMeta] = useState(metaInicial['bloco-14'])
   const [turnos, setTurnos] = useState(1)
   const [dias, setDias] = useState(22)
 
@@ -16,16 +16,20 @@ export default function Calculadora({ onEscolha }) {
     () => vibroprensas.map((m) => ({ m, mes: m.producao[art] * turnos * dias })),
     [art, turnos, dias],
   )
-  const max = Math.max(...linhas.map((l) => l.mes))
-  const indicada = linhas.find((l) => l.mes >= meta)
-  const escala = Math.max(max, meta)
+  // A meta nunca passa do que a maior vibroprensa produz com os turnos e dias escolhidos.
+  const topo = linhas[linhas.length - 1]
+  const max = topo.mes
+  const meta = Math.min(metaPedida, max)
+  const indicada = linhas.find((l) => l.mes >= meta) || topo
+  const escala = max
+  const passo = a.unidade === 'm²' ? 1 : 100
 
   const trocaArt = (id) => { setArt(id); setMeta(metaInicial[id]) }
   const pedir = (e) => {
     e.preventDefault()
     onEscolha?.({
       interesse: 'Vibroprensas',
-      producao: `${formatar(meta)} ${a.unidade} de ${a.nome.toLowerCase()} por mês, ${turnos} turno(s), ${dias} dias. Máquina indicada: ${indicada ? indicada.m.nome : 'planta com mais de uma linha'}.`,
+      producao: `${formatar(meta)} ${a.unidade} de ${a.nome.toLowerCase()} por mês, ${turnos} turno(s), ${dias} dias. Máquina indicada: ${indicada.m.nome}.`,
     })
     scrollToTarget('#orcamento')
   }
@@ -53,11 +57,15 @@ export default function Calculadora({ onEscolha }) {
 
             <div className="field">
               <label htmlFor="calc-meta">Meta por mês ({a.unidade})</label>
-              <input id="calc-meta" type="number" inputMode="numeric" min="0" step={a.unidade === 'm²' ? 500 : 5000}
-                value={meta} onChange={(e) => setMeta(Math.max(0, Number(e.target.value) || 0))} />
+              <input id="calc-meta" type="number" inputMode="numeric" min="0" max={max} step={a.unidade === 'm²' ? 500 : 5000}
+                aria-describedby="calc-meta-max"
+                value={meta} onChange={(e) => setMeta(Math.min(max, Math.max(0, Number(e.target.value) || 0)))} />
               <input aria-label={`Meta por mês em ${a.unidade}, controle deslizante`} className="calc-range" type="range" min="0"
-                max={Math.round(escala * 1.1)} step={a.unidade === 'm²' ? 100 : 1000} value={meta}
+                max={max} step={passo} value={meta}
                 onChange={(e) => setMeta(Number(e.target.value))} />
+              <p id="calc-meta-max" className="t-small muted calc-max">
+                Até {formatar(max)} {a.unidade} por mês, o limite da {topo.m.nome} com {turnos} {turnos > 1 ? 'turnos' : 'turno'} em {dias} dias.
+              </p>
             </div>
 
             <div className="calc-row">
@@ -79,16 +87,12 @@ export default function Calculadora({ onEscolha }) {
 
           <div className="calc-out">
             <p className="calc-result t-lead" aria-live="polite">
-              {indicada ? (
-                <>Para <strong className="num">{formatar(meta)} {a.unidade}</strong> de {a.nome.toLowerCase()} por mês, a indicada é a <strong>{indicada.m.nome}</strong>.</>
-              ) : (
-                <>Nenhuma máquina sozinha chega a <strong className="num">{formatar(meta)} {a.unidade}</strong> por mês. Uma planta com duas linhas resolve: fale com a engenharia.</>
-              )}
+              Para <strong className="num">{formatar(meta)} {a.unidade}</strong> de {a.nome.toLowerCase()} por mês, a indicada é a <strong>{indicada.m.nome}</strong>.
             </p>
             <p className="t-small muted bars-legend"><span className="lg-goal" aria-hidden="true" /> Sua meta · <span className="lg-rec" aria-hidden="true" /> Máquina indicada</p>
             <ul className="bars" aria-label="Produção por mês de cada vibroprensa">
               {linhas.map(({ m, mes }) => {
-                const cls = indicada && indicada.m.id === m.id ? 'is-rec' : mes >= meta ? 'is-ok' : ''
+                const cls = indicada.m.id === m.id ? 'is-rec' : mes >= meta ? 'is-ok' : ''
                 return (
                   <li key={m.id} className={`bar ${cls}`}>
                     <span className="bar-n">{m.nome}</span>
@@ -102,7 +106,7 @@ export default function Calculadora({ onEscolha }) {
               })}
             </ul>
             <div className="calc-cta">
-              {indicada && <img src={indicada.m.foto || indicada.m.img} alt={indicada.m.nome} className="calc-img" loading="lazy" />}
+              <img src={indicada.m.foto || indicada.m.img} alt={indicada.m.nome} className="calc-img" loading="lazy" />}
               <Split href="#orcamento" onClick={pedir}>Pedir orçamento desta configuração</Split>
             </div>
             <p className="t-small muted">Estimativa com turnos de 8 horas, sem paradas para limpeza ou manutenção. A produção real depende do traço, dos moldes e da operação.</p>

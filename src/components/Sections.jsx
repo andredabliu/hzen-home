@@ -1,9 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 import Icon, { Split } from './Icon.jsx'
 
-/** Foto padronizada (Magnific) quando existe; senão o recorte do catálogo. */
+/** Foto padronizada (Magnific) quando existe; senão o recorte do catálogo.
+ *  Telas grandes: quadro vertical 4:5 (foto -v). Celular: foto larga 16:9, inteira. */
 function Shot({ item, className = '', alt = '' }) {
-  if (item.foto) return <img src={item.foto} alt={alt} className={`${className} is-foto`} style={{ objectFit: item.fit || 'cover' }} loading="lazy" />
+  if (item.foto) {
+    return (
+      <picture className="shot">
+        {item.fotoLarga && <source media="(max-width: 899px)" srcSet={item.fotoLarga} />}
+        <img src={item.foto} alt={alt} className={`${className} is-foto`} loading="lazy" />
+      </picture>
+    )
+  }
   return <img src={item.img} alt={alt} className={className} loading="lazy" />
 }
 import { familias, etapas, vibroprensas } from '../data/maquinas.js'
@@ -288,7 +296,6 @@ export function PorQue() {
               </li>
             ))}
           </ul>
-          <img className="porque-machine" src="./img/fotos/hz-1000-sincro-recorte.webp" alt="" loading="lazy" />
         </div>
       </div>
     </section>

@@ -77,9 +77,12 @@ export function Orcamento({ preset }) {
         <div className="orc-side">
           <h2 id="orc-title" className="t-head" data-reveal><span>Conte sua meta de produção</span></h2>
           <p className="muted orc-intro">Responda em um minuto. A engenharia comercial retorna pelo WhatsApp ou por e-mail.</p>
-          <figure className="orc-machine" aria-hidden="true">
-            <img src="./img/giro/f035.webp" alt="" loading="lazy" />
-          </figure>
+          <ul className="orc-canais" aria-label="Fale direto com a H-Zen">
+            <li><span className="t-small muted">WhatsApp</span><a href={`https://wa.me/${contato.whatsapp}`} target="_blank" rel="noopener">{contato.whatsappTexto}</a></li>
+            <li><span className="t-small muted">Telefone</span><a href={`tel:${contato.telefoneLink}`}>{contato.telefone}</a></li>
+            <li><span className="t-small muted">E-mail</span><a href={`mailto:${contato.email}`}>{contato.email}</a></li>
+            <li><span className="t-small muted">Fábrica</span><a href={contato.mapa} target="_blank" rel="noopener">{contato.endereco[0]}, {contato.endereco[1]}</a></li>
+          </ul>
         </div>
 
         <div className="orc-panel">

@@ -5,6 +5,8 @@
 const IMG = './img/produtos/'
 // Fotos padronizadas no Magnific (Nano Banana 2.1) a partir dos renders do catálogo.
 // -tela: fundo ajustado a #D9D6D1 (telas da linha e da planta) · -pagina: fundo #E6E4E0 (sobre a página)
+// -v: quadro vertical 4:5 com a máquina inteira e o chão completado (matriz em _assets/magnific-matriz-4x5),
+//     para os quadros com object-fit: cover nunca cortarem a máquina. -h: o mesmo em 5:4 (planta).
 const FOTO = './img/fotos/'
 
 /** Artefatos que entram na calculadora (meio-fio fora até o cliente confirmar as medidas). */
@@ -53,31 +55,31 @@ export const vibroprensas = [
 
 /** Famílias da linha de produtos (lista da Home e mega menu). */
 export const familias = [
-  { id: 'vibroprensas', nome: 'Vibroprensas', icone: 'prensa', img: IMG + 'hz-1000-sincro.webp', foto: FOTO + 'hz-1300ss-tela.webp', fotoPagina: FOTO + 'hz-1300ss-pagina.webp', fit: 'cover',
+  { id: 'vibroprensas', nome: 'Vibroprensas', icone: 'prensa', img: IMG + 'hz-1000-sincro.webp', foto: FOTO + 'hz-1300ss-tela-v.webp', fotoLarga: FOTO + 'hz-1300ss-tela.webp', fotoPagina: FOTO + 'hz-1300ss-pagina-v.webp',
     texto: 'Da HZ-3.2 à HZ-1300Ss, de 7.000 a 19.200 blocos por dia.', curto: '6 modelos, até 19.200 blocos/dia' },
-  { id: 'misturadores', nome: 'Misturadores', icone: 'misturador', img: IMG + 'misturador-planetario.webp', foto: FOTO + 'misturador-planetario-tela.webp', fotoPagina: FOTO + 'misturador-planetario-pagina.webp', fit: 'cover',
+  { id: 'misturadores', nome: 'Misturadores', icone: 'misturador', img: IMG + 'misturador-planetario.webp', foto: FOTO + 'misturador-planetario-tela-v.webp', fotoLarga: FOTO + 'misturador-planetario-tela.webp', fotoPagina: FOTO + 'misturador-planetario-pagina-v.webp',
     texto: 'Planetário, eixo simples e duplo eixo, de 400 a 2.400 kg por ciclo.', curto: 'Planetário, eixo simples e duplo' },
-  { id: 'centrais', nome: 'Centrais dosadoras', icone: 'central', img: IMG + 'central-balanca.webp', foto: FOTO + 'central-dosadora-tela.webp', fotoPagina: FOTO + 'central-dosadora-pagina.webp', fit: 'contain',
+  { id: 'centrais', nome: 'Centrais dosadoras', icone: 'central', img: IMG + 'central-balanca.webp', foto: FOTO + 'central-dosadora-tela-v.webp', fotoLarga: FOTO + 'central-dosadora-tela.webp', fotoPagina: FOTO + 'central-dosadora-pagina-v.webp',
     texto: 'Pesagem na esteira, temporizada, por desconto ou individual, com receitas na IHM.', curto: 'Quatro sistemas de pesagem' },
-  { id: 'elevadores', nome: 'Elevadores', icone: 'elevador', img: IMG + 'elevador-gaiolas.webp', foto: FOTO + 'elevador-gaiolas-tela.webp', fotoPagina: FOTO + 'elevador-gaiolas-pagina.webp', fit: 'cover',
+  { id: 'elevadores', nome: 'Elevadores', icone: 'elevador', img: IMG + 'elevador-gaiolas.webp', foto: FOTO + 'elevador-gaiolas-tela-v.webp', fotoLarga: FOTO + 'elevador-gaiolas-tela.webp', fotoPagina: FOTO + 'elevador-gaiolas-pagina-v.webp',
     texto: 'Empilhador, para gaiolas e acumulador para Finger Car.', curto: 'Carga e descarga de bandejas' },
-  { id: 'automacoes', nome: 'Automações', icone: 'automacao', img: IMG + 'garra.webp', foto: FOTO + 'garra-tela.webp', fotoPagina: FOTO + 'garra-pagina.webp', fit: 'cover',
+  { id: 'automacoes', nome: 'Automações', icone: 'automacao', img: IMG + 'garra.webp', foto: FOTO + 'garra-tela-v.webp', fotoLarga: FOTO + 'garra-tela.webp', fotoPagina: FOTO + 'garra-pagina-v.webp',
     texto: 'Finger Car, Cubber e Garra para transporte, cura e paletização.', curto: 'Finger Car, Cubber e Garra' },
-  { id: 'plantas', nome: 'Plantas completas', icone: 'planta', img: IMG + 'cubber.webp', foto: FOTO + 'cubber-tela.webp', fotoPagina: FOTO + 'cubber-pagina.webp', fit: 'cover',
+  { id: 'plantas', nome: 'Plantas completas', icone: 'planta', img: IMG + 'cubber.webp', foto: FOTO + 'cubber-tela-v.webp', fotoLarga: FOTO + 'cubber-tela.webp', fotoPagina: FOTO + 'cubber-pagina-v.webp',
     texto: 'Layout, máquinas e automação projetados juntos, do silo ao palete.', curto: 'Do layout à partida' },
 ]
 
 /** Etapas de uma planta de artefatos. A ordem é real. */
 export const etapas = [
-  { id: 'dosar', verbo: 'Dosar', maquina: 'Central dosadora', img: IMG + 'central-balanca.webp', foto: FOTO + 'central-dosadora-tela.webp', fit: 'contain',
+  { id: 'dosar', verbo: 'Dosar', maquina: 'Central dosadora', img: IMG + 'central-balanca.webp', foto: FOTO + 'central-dosadora-tela-h.webp', fotoLarga: FOTO + 'central-dosadora-tela.webp',
     texto: 'A central pesa areia, pó de pedra e cimento por receita, com células de carga e CLP.' },
-  { id: 'misturar', verbo: 'Misturar', maquina: 'Misturador planetário', img: IMG + 'misturador-planetario.webp', foto: FOTO + 'misturador-planetario-tela.webp', fit: 'contain',
+  { id: 'misturar', verbo: 'Misturar', maquina: 'Misturador planetário', img: IMG + 'misturador-planetario.webp', foto: FOTO + 'misturador-planetario-tela-h.webp', fotoLarga: FOTO + 'misturador-planetario-tela.webp',
     texto: 'O misturador deixa o traço homogêneo, com chapas de desgaste em aço extra duro.' },
-  { id: 'prensar', verbo: 'Prensar', maquina: 'Vibroprensa HZ-1000 Sincro', img: IMG + 'hz-1000-sincro.webp', foto: FOTO + 'hz-1000-sincro-tela.webp', fit: 'cover',
+  { id: 'prensar', verbo: 'Prensar', maquina: 'Vibroprensa HZ-1000 Sincro', img: IMG + 'hz-1000-sincro.webp', foto: FOTO + 'hz-1000-sincro-tela-h.webp', fotoLarga: FOTO + 'hz-1000-sincro-tela.webp',
     texto: 'A vibroprensa molda blocos, pavers e lajotas em ciclos de 11 a 20 segundos.' },
-  { id: 'curar', verbo: 'Transportar e curar', maquina: 'Elevador para Finger Car', img: IMG + 'elevador-finger-car.webp', foto: FOTO + 'elevador-finger-car-tela.webp', fit: 'cover',
+  { id: 'curar', verbo: 'Transportar e curar', maquina: 'Elevador para Finger Car', img: IMG + 'elevador-finger-car.webp', foto: FOTO + 'elevador-finger-car-tela-h.webp', fotoLarga: FOTO + 'elevador-finger-car-tela.webp',
     texto: 'Elevadores e Finger Car levam as bandejas às câmaras de cura sem trincar o artefato fresco.' },
-  { id: 'paletizar', verbo: 'Paletizar', maquina: 'Garra', img: IMG + 'garra.webp', foto: FOTO + 'garra-tela.webp', fit: 'cover',
+  { id: 'paletizar', verbo: 'Paletizar', maquina: 'Garra', img: IMG + 'garra.webp', foto: FOTO + 'garra-tela-h.webp', fotoLarga: FOTO + 'garra-tela.webp',
     texto: 'Cubber e Garra montam o palete e devolvem as bandejas vazias à máquina.' },
 ]
 
