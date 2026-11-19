@@ -106,11 +106,26 @@ export default function Calculadora({ onEscolha }) {
               })}
             </ul>
             <div className="calc-cta">
-              <img src={indicada.m.foto || indicada.m.img} alt={indicada.m.nome} className="calc-img" loading="lazy" />}
               <Split href="#orcamento" onClick={pedir}>Pedir orçamento desta configuração</Split>
             </div>
             <p className="t-small muted">Estimativa com turnos de 8 horas, sem paradas para limpeza ou manutenção. A produção real depende do traço, dos moldes e da operação.</p>
           </div>
+
+          <figure className="calc-foto" aria-live="polite">
+            <picture key={indicada.m.id}>
+              <source media="(max-width: 1199px)" srcSet={indicada.m.fotoLarga} />
+              <img src={indicada.m.fotoV} alt={`Vibroprensa ${indicada.m.nome}`} />
+            </picture>
+            <figcaption className="calc-foto-cap">
+              <span className="t-small muted">Máquina indicada</span>
+              <span className="calc-foto-nome">{indicada.m.nome}</span>
+              <dl className="calc-foto-spec t-small">
+                <div><dt className="muted">Força</dt><dd>{indicada.m.forca}</dd></div>
+                <div><dt className="muted">Ciclo</dt><dd>{indicada.m.ciclo}</dd></div>
+                <div><dt className="muted">Bandeja</dt><dd>{indicada.m.bandeja}</dd></div>
+              </dl>
+            </figcaption>
+          </figure>
         </div>
 
         <noscript>

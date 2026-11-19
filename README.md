@@ -45,7 +45,7 @@ public/img/             renders recortados (WebP), quadros do giro (120), projet
 1. **Formulário de orçamento** (`Orcamento.jsx`, função `enviar`): hoje abre o WhatsApp `contato.whatsapp`. Trocar por POST ao CRM/e-mail mantendo a validação.
 2. **Newsletter do rodapé** (`Footer`, função `assinar`): hoje abre um e-mail. Ligar à ferramenta de e-mail marketing.
 3. **Redes sociais**: links genéricos em `Footer`. Trocar pelos perfis da H-Zen.
-4. **Links das famílias**: apontam para âncoras da Home. Quando existirem páginas de produto, trocar `href` em `familias` / `Header` / `Sections`.
+4. **Links das famílias e das máquinas**: o site não será one-page. Cada máquina terá sua própria página (próxima fase, ainda não feita). Hoje os links apontam para âncoras da Home; quando as páginas existirem, trocar `href` em `familias` / `Header` / `Sections` e ligar o nome da máquina indicada na calculadora à página dela. `data/maquinas.js` já é a fonte única dos dados técnicos para essas páginas.
 5. **Analytics e pixel** (Meta, Google): não instalados.
 
 ## A confirmar com o cliente

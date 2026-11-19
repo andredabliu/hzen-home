@@ -428,3 +428,26 @@
 .orc-canais li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; align-items: baseline; padding-block: 16px; border-top: var(--border) solid var(--line); }
 .orc-canais a { color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
 .orc-canais a:hover { color: var(--accent-text); }
+
+/* Calculadora com a máquina indicada em destaque, na altura do painel */
+.calc-cta { justify-content: flex-start; }
+.calc-foto { position: relative; margin: 0; background: var(--surface); border-radius: var(--radius-panel); overflow: hidden; min-height: 320px; }
+.calc-foto picture { display: contents; }
+.calc-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: 50% 42%; animation: calc-foto-in var(--d-slow) var(--ease-out); }
+@keyframes calc-foto-in { from { transform: scale(0.97) translateY(8px); } }
+.calc-foto-cap { position: absolute; left: 0; right: 0; bottom: 0; display: grid; gap: 4px; padding: clamp(16px, 2vw, 24px); }
+.calc-foto-nome { font-size: var(--t-lead); line-height: var(--lh-lead); font-weight: var(--w-medium); }
+.calc-foto-spec { display: grid; grid-template-columns: repeat(3, minmax(0, auto)); justify-content: start; gap: 6px 20px; margin: 8px 0 0; padding-top: 10px; border-top: var(--border) solid var(--line); }
+.calc-foto-spec div { display: grid; gap: 2px; }
+.calc-foto-spec dd { margin: 0; }
+@media (min-width: 1200px) {
+  .calc-panel { grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3.4fr); gap: clamp(28px, 3vw, 48px); }
+  .calc-foto { margin: calc(-1 * clamp(20px, 4vw, 56px) + 8px) calc(-1 * clamp(20px, 4vw, 56px) + 8px) calc(-1 * clamp(20px, 4vw, 56px) + 8px) 0; }
+}
+@media (max-width: 1199px) {
+  .calc-foto { order: 2; aspect-ratio: 16 / 10; min-height: 0; }
+  .calc-foto-cap { position: static; }
+  .calc-foto { display: grid; grid-template-rows: minmax(0, 1fr) auto; aspect-ratio: auto; }
+  .calc-foto img { position: static; aspect-ratio: 16 / 9; height: auto; }
+  .calc-out { order: 3; }
+}

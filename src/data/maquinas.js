@@ -22,32 +22,32 @@ export const artefatos = [
 /** Vibroprensas, da menor para a maior. Produção por dia em 8 h, sem paradas. */
 export const vibroprensas = [
   {
-    id: 'hz-3-2', nome: 'HZ-3.2', img: IMG + 'hz-3-2-linha.webp', foto: FOTO + 'hz-3-2-linha-pagina.webp',
+    id: 'hz-3-2', nome: 'HZ-3.2', img: IMG + 'hz-3-2-linha.webp', foto: FOTO + 'hz-3-2-linha-pagina.webp', fotoV: FOTO + 'hz-3-2-linha-tela-v.webp', fotoLarga: FOTO + 'hz-3-2-linha-tela.webp',
     bandeja: '480 × 540 × 20 mm', potencia: '20 kW', ciclo: '14 a 20 s', forca: '1,5 t',
     producao: { 'paver-10x20': 240, 'paver-16-faces': 180, 'lajota-sextavada': 188, 'bloco-9': 7000, 'bloco-14': 4200, 'bloco-19': 2800 },
   },
   {
-    id: 'hz-04', nome: 'HZ-04', img: IMG + 'site-VibroHZ04.webp', foto: FOTO + 'hz-04-pagina.webp',
+    id: 'hz-04', nome: 'HZ-04', img: IMG + 'site-VibroHZ04.webp', foto: FOTO + 'hz-04-pagina.webp', fotoV: FOTO + 'hz-04-tela-v.webp', fotoLarga: FOTO + 'hz-04-tela.webp',
     bandeja: '540 × 620 × 25 mm', potencia: '28 kW', ciclo: '12 a 18 s', forca: '3 t',
     producao: { 'paver-10x20': 360, 'paver-16-faces': 270, 'lajota-sextavada': 450, 'bloco-9': 7500, 'bloco-14': 6000, 'bloco-19': 4500 },
   },
   {
-    id: 'hz-06', nome: 'HZ-06', img: IMG + 'hz-06.webp', foto: FOTO + 'hz-06-pagina.webp',
+    id: 'hz-06', nome: 'HZ-06', img: IMG + 'hz-06.webp', foto: FOTO + 'hz-06-pagina.webp', fotoV: FOTO + 'hz-06-tela-v.webp', fotoLarga: FOTO + 'hz-06-tela.webp',
     bandeja: '620 × 920 × 25 mm', potencia: '37 kW', ciclo: '12 a 18 s', forca: '3 t',
     producao: { 'paver-10x20': 680, 'paver-16-faces': 540, 'lajota-sextavada': 525, 'bloco-9': 12000, 'bloco-14': 7500, 'bloco-19': 6000 },
   },
   {
-    id: 'hz-700-sincro', nome: 'HZ-700 Sincro', img: IMG + 'hz-700-sincro.webp', foto: FOTO + 'hz-1000-sincro-pagina.webp',
+    id: 'hz-700-sincro', nome: 'HZ-700 Sincro', img: IMG + 'hz-700-sincro.webp', foto: FOTO + 'hz-1000-sincro-pagina.webp', fotoV: FOTO + 'hz-1000-sincro-tela-v.webp', fotoLarga: FOTO + 'hz-1000-sincro-tela.webp',
     bandeja: '620 × 920 × 25 mm', potencia: '37 kW', ciclo: '12 a 18 s', forca: '4,5 t',
     producao: { 'paver-10x20': 720, 'paver-16-faces': 540, 'lajota-sextavada': 563, 'bloco-9': 12800, 'bloco-14': 8000, 'bloco-19': 6400 },
   },
   {
-    id: 'hz-1000-sincro', nome: 'HZ-1000 Sincro', img: IMG + 'hz-1000-sincro.webp', foto: FOTO + 'hz-1000-sincro-pagina.webp',
+    id: 'hz-1000-sincro', nome: 'HZ-1000 Sincro', img: IMG + 'hz-1000-sincro.webp', foto: FOTO + 'hz-1000-sincro-pagina.webp', fotoV: FOTO + 'hz-1000-sincro-tela-v.webp', fotoLarga: FOTO + 'hz-1000-sincro-tela.webp',
     bandeja: '1200 × 675 × 40 mm', potencia: '40 kW', ciclo: '11 a 18 s', forca: '6 t',
     producao: { 'paver-10x20': 1000, 'paver-16-faces': 680, 'lajota-sextavada': 744, 'bloco-9': 17600, 'bloco-14': 11200, 'bloco-19': 8000 },
   },
   {
-    id: 'hz-1300ss', nome: 'HZ-1300Ss', img: IMG + 'hz-1300ss.webp', foto: FOTO + 'hz-1300ss-pagina.webp', lancamento: true,
+    id: 'hz-1300ss', nome: 'HZ-1300Ss', img: IMG + 'hz-1300ss.webp', foto: FOTO + 'hz-1300ss-pagina.webp', fotoV: FOTO + 'hz-1300ss-tela-v.webp', fotoLarga: FOTO + 'hz-1300ss-tela.webp', lancamento: true,
     bandeja: '1300 × 700 × 40 mm', potencia: '40 kW', ciclo: '11 a 18 s', forca: '6,8 t',
     producao: { 'paver-10x20': 1200, 'paver-16-faces': 850, 'lajota-sextavada': 850, 'bloco-9': 19200, 'bloco-14': 12800, 'bloco-19': 9600 },
   },
